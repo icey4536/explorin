@@ -1,0 +1,75 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+	<title>instabook</title>
+</head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+        <link rel="stylesheet" href="{% static 'assets/css/feed.css'%}">
+<style >
+	/* Style the top navigation bar */
+.navbar {
+  overflow: hidden; /* Hide overflow */
+  background-color: #4CAF50; /* Dark background color */
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  float: left; /* Make sure that the links stay side-by-side */
+  display: block; /* Change the display to block, for responsive reasons (see below) */
+  color: white; /* White text color */
+  text-align: center; /* Center the text */
+  padding: 14px 20px; /* Add some padding */
+  text-decoration: none; /* Remove underline */
+}
+
+/* Right-aligned link */
+.navbar a.right {
+  float: right; /* Float a link to the right */
+}
+
+/* Change color on hover/mouse-over */
+.navbar a:hover {
+  background-color: #ddd; /* Grey background color */
+  color: black; /* Black text color */
+}
+
+</style>
+<body>
+<div class="navbar">
+  <a href="{% url 'profile' user.username %}">hello {{user.username}}</a>
+  <a href="addpost">addpost</a>
+  <a href="logout">logout</a>
+  
+  
+</div>
+{% for post in pos %}
+          <main id="feed">
+            <div class="photo">
+                <header class="photo__header">
+                    
+                    <div class="photo__user-info">
+                        <span class="photo__author"><b><h4>{{post.user}}</h4></b></span>
+                    </div>
+                </header>
+                <img src="{{post.img.url}}" />
+                <div class="photo__info">
+                    <div class="photo__actions">
+                        <span class="photo__action">
+                          <div><h3>{{post.user}}: {{post.caption}}</h3></div>
+                           <div class="like">
+                           <i class="glyphicon glyphicon-heart"></i>
+                            <p>{{post.likes}}Likes</p><br><br><br>
+                          </div>
+                        </span>
+                    </div>
+                    </div>
+                </div>
+            </div>
+          </main>
+          {%endfor%}
+          
+</body>
+</html>
